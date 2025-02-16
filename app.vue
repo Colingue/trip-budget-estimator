@@ -7,6 +7,36 @@
   </NuxtLayout>
 </template>
 
+<script setup lang="ts">
+useHead({
+  title: "Estimate your travel budget",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Estimate the cost of your trip based on your destination, duration, and travel preferences.",
+    },
+    {
+      property: "og:title",
+      content: "Estimate your travel budget",
+    },
+    {
+      property: "og:description",
+      content:
+        "Estimate the cost of your trip based on your destination, duration, and travel preferences.",
+    },
+    {
+      property: "og:image",
+      content: "./assets/og-image.png",
+    },
+    {
+      property: "og:url",
+      content: "https://travel-budget-estimator.netlify.app/",
+    },
+  ],
+});
+</script>
+
 <style lang="scss">
 @use "sass:color";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
