@@ -11,7 +11,7 @@ onMounted(() => {
 });
 </script>
 <template>
-  <no-ssr>
+  <ClientOnly placeholder="Loading...">
     <LottieAnimation
       :animation-data="animation"
       :auto-play="true"
@@ -20,7 +20,7 @@ onMounted(() => {
       class="animation-loader"
       ref="anim"
     />
-  </no-ssr>
+  </ClientOnly>
 </template>
 
 <style scoped>
