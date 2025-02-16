@@ -11,14 +11,16 @@ onMounted(() => {
 });
 </script>
 <template>
-  <LottieAnimation
-    :animation-data="animation"
-    :auto-play="true"
-    :loop="true"
-    :speed="1"
-    class="animation-loader"
-    ref="anim"
-  />
+  <no-ssr>
+    <LottieAnimation
+      :animation-data="animation"
+      :auto-play="true"
+      :loop="true"
+      :speed="1"
+      class="animation-loader"
+      ref="anim"
+    />
+  </no-ssr>
 </template>
 
 <style scoped>
