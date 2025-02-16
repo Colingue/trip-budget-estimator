@@ -27,11 +27,11 @@ useHead({
     },
     {
       property: "og:image",
-      content: "./assets/og-image.png",
+      content: "https://budget2travel.com/img/og-image.png",
     },
     {
       property: "og:url",
-      content: "https://travel-budget-estimator.netlify.app/",
+      content: "https://budget2travel.com",
     },
   ],
 });
