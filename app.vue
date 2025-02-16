@@ -8,32 +8,11 @@
 </template>
 
 <script setup lang="ts">
-useHead({
+useSeoMeta({
   title: "Estimate your travel budget",
-  meta: [
-    {
-      name: "description",
-      content:
-        "Estimate the cost of your trip based on your destination, duration, and travel preferences.",
-    },
-    {
-      property: "og:title",
-      content: "Estimate your travel budget",
-    },
-    {
-      property: "og:description",
-      content:
-        "Estimate the cost of your trip based on your destination, duration, and travel preferences.",
-    },
-    {
-      property: "og:image",
-      content: "https://budget2travel.com/img/og-image.png",
-    },
-    {
-      property: "og:url",
-      content: "https://budget2travel.com",
-    },
-  ],
+  description:
+    "Estimate the cost of your trip based on your destination, duration, and travel preferences.",
+  ogImageUrl: "https://budget2travel.com/img/og-image.png",
 });
 </script>
 
