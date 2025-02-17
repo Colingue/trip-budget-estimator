@@ -3,10 +3,6 @@
     <div class="budget-result-container">
       <h2>Your Trip Estimation</h2>
 
-      <!-- <div v-if="totalPrice === 0">
-        <EmptyResult />
-      </div> -->
-
       <div class="budget-result">
         <ResultDetailCard
           :destination="destination"
@@ -14,8 +10,6 @@
           :number-of-people="formData.numberOfPeople"
           :flightIncluded="formData.includeFlight"
         />
-
-        <!-- <CurrencySelector v-model:currency="formData.currency" /> -->
 
         <div class="divider-y"></div>
 
@@ -26,7 +20,7 @@
           :dailyCost="dailyCost"
         />
 
-        <button class="btn btn-primary" @click="copyData">
+        <button class="btn btn-primary" @click="copyLink">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path
               d="M208 0L332.1 0c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9L448 336c0 26.5-21.5 48-48 48l-192 0c-26.5 0-48-21.5-48-48l0-288c0-26.5 21.5-48 48-48zM48 128l80 0 0 64-64 0 0 256 192 0 0-32 64 0 0 48c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 176c0-26.5 21.5-48 48-48z"
@@ -54,12 +48,11 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-// import { store } from "../../store";
+
 import type { FormDataBudget } from "../../type";
 import BudgetDetails from "./BudgetDetails.vue";
 import ResultDetailCard from "./ResultDetailCard.vue";
 import { useCurrencyStore } from "~/store/currencyStore";
-// import { getTotalSum } from "../../helpers/budgetCalcultator";
 
 const props = defineProps<{
   formData: FormDataBudget;
@@ -75,6 +68,9 @@ const currencyStore = useCurrencyStore();
 const code = computed(() => currencyStore.currency.code);
 
 const rate = computed(() => getConvertionRate(code.value));
+
+const route = useRoute();
+const url = `${window.location.origin}${route.fullPath}`;
 
 const dailyCost = computed(() =>
   Math.round(
@@ -123,22 +119,8 @@ const totalPrice = computed(() =>
   )
 );
 
-const copyData = () => {
-  const text = `Destination: ${destination.value}
-  Number of days: ${props.formData.numberOfDays}
-  Budget: ${props.formData.budget}
-  Include flight: ${props.formData.includeFlight}
-  Departure city: ${props.formData.departureCity}
-  Total price: ${getTotalSum(
-    dailyCost.value,
-    props.formData.numberOfDays,
-    props.formData.numberOfPeople,
-    flightPrice.value * props.formData.numberOfPeople
-  )}
-  Daily cost: ${dailyCost.value}
-  Flight price: ${flightPrice.value}`;
-
-  navigator.clipboard.writeText(text);
+const copyLink = () => {
+  navigator.clipboard.writeText(url);
 };
 </script>
 

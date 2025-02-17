@@ -65,7 +65,7 @@ defineEmits(["close"]);
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #e0e0e0;
-  padding: 10px;
+  padding: 20px;
 }
 
 .title {
@@ -81,5 +81,10 @@ defineEmits(["close"]);
 .modal-content {
   overflow-y: auto;
   flex: 1;
+  padding: 20px;
+
+  & > :first-child {
+    margin-top: 0;
+  }
 }
 </style>
