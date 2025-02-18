@@ -10,8 +10,8 @@
         📅 {{ numberOfDays }}
         {{ numberOfDays && numberOfDays > 1 ? "days" : "day" }}
         - 🧍‍♂️ {{ numberOfPeople }}
-        {{ numberOfPeople && numberOfPeople > 1 ? "travelers" : "traveler" }}
-        {{}}
+        {{ numberOfPeople && numberOfPeople > 1 ? "travelers" : "traveler" }} -
+        💰 {{ budgetType }}
       </p>
     </div>
   </div>
@@ -23,6 +23,7 @@ defineProps({
   destination: String,
   numberOfDays: Number,
   numberOfPeople: Number,
+  budgetType: String,
 });
 </script>
 

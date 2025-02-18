@@ -9,6 +9,7 @@
           :numberOfDays="formData.numberOfDays"
           :number-of-people="formData.numberOfPeople"
           :flightIncluded="formData.includeFlight"
+          :budget-type="formData.budget"
         />
 
         <div class="divider-y"></div>
@@ -19,6 +20,10 @@
           :total-price="totalPrice"
           :dailyCost="dailyCost"
         />
+
+        <div class="divider-y"></div>
+
+        <Repartition :repartition="repartitions" />
 
         <button class="btn btn-primary" @click="share">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -60,22 +65,78 @@ import { computed } from "vue";
 import type { FormDataBudget } from "../../type";
 import BudgetDetails from "./BudgetDetails.vue";
 import ResultDetailCard from "./ResultDetailCard.vue";
-import { useCurrencyStore } from "~/store/currencyStore";
+import type { RepartitionList } from "./Repartition.vue";
+import Repartition from "./Repartition.vue";
 
 const props = defineProps<{
   formData: FormDataBudget;
   resetForm: () => void;
 }>();
 
-const { getDailyCostOfDestinationByBudget, getTotalSum } =
-  useBudgetCalculator();
-const { getFlightPrice } = useFlightPriceCalculator();
-const { getConvertionRate } = useConvertionCalculator();
+const { dailyCost, totalPrice, repartition } = useBudgetCalculator(
+  props.formData
+);
 
-const currencyStore = useCurrencyStore();
-const code = computed(() => currencyStore.currency.code);
+const repartitions: RepartitionList = [
+  {
+    title: "Hébergement",
+    amount:
+      repartition.value.accommodation *
+      props.formData.numberOfPeople *
+      props.formData.numberOfDays,
+    emoji: "🏠",
+    percentage: Math.round(
+      ((repartition.value.accommodation *
+        props.formData.numberOfPeople *
+        props.formData.numberOfDays) /
+        totalPrice.value) *
+        100
+    ),
+  },
+  {
+    title: "Nourriture",
+    amount:
+      repartition.value.food *
+      props.formData.numberOfPeople *
+      props.formData.numberOfDays,
+    emoji: "🍔",
+    percentage: Math.round(
+      ((repartition.value.food *
+        props.formData.numberOfPeople *
+        props.formData.numberOfDays) /
+        totalPrice.value) *
+        100
+    ),
+  },
+  {
+    title: "Activités",
+    amount:
+      repartition.value.activities *
+      props.formData.numberOfPeople *
+      props.formData.numberOfDays,
+    emoji: "🎉",
+    percentage: Math.round(
+      ((repartition.value.activities *
+        props.formData.numberOfPeople *
+        props.formData.numberOfDays) /
+        totalPrice.value) *
+        100
+    ),
+  },
+  {
+    title: "Round trip",
+    amount: repartition.value.roundTrip,
+    emoji: "✈️",
+    percentage: Math.round(
+      (repartition.value.roundTrip / totalPrice.value) * 100
+    ),
+  },
+];
 
-const rate = computed(() => getConvertionRate(code.value));
+const { flightPrice } = useFlightPriceCalculator(
+  props.formData.departureCity,
+  props.formData.destinationCity
+);
 
 const route = useRoute();
 
@@ -95,48 +156,33 @@ const share = () => {
   });
 };
 
-const dailyCost = computed(() =>
-  Math.round(
-    getDailyCostOfDestinationByBudget(
-      props.formData.destinationCountry,
-      props.formData.budget,
-      props.formData.destinationCity
-    ) * rate.value
-  )
-);
+// const dailyCost = computed(() =>
+//   Math.round(
+//     getDailyCostOfDestinationByBudget(
+//       props.formData.destinationCountry,
+//       props.formData.budget,
+//       props.formData.destinationCity
+//     ) * rate.value
+//   )
+// );
 
-const flightPrice = computed(() => {
-  if (
-    !props.formData.includeFlight ||
-    !props.formData.departureCity ||
-    !props.formData.destinationCity
-  ) {
-    return 0;
-  }
+// const flightPrice = computed(() => {
+//   if (
+//     !props.formData.includeFlight ||
+//     !props.formData.departureCity ||
+//     !props.formData.destinationCity
+//   ) {
+//     return 0;
+//   }
 
-  return Math.round(
-    getFlightPrice(
-      props.formData.departureCity,
-      props.formData.destinationCity,
-      true
-    ) * rate.value
-  );
-});
-
-const totalPrice = computed(() =>
-  Math.round(
-    getTotalSum(
-      dailyCost.value,
-      props.formData.numberOfDays,
-      props.formData.numberOfPeople,
-      flightPrice.value * props.formData.numberOfPeople
-    )
-  )
-);
-
-const copyLink = () => {
-  navigator.clipboard.writeText(url);
-};
+//   return Math.round(
+//     getFlightPrice(
+//       props.formData.departureCity,
+//       props.formData.destinationCity,
+//       true
+//     ) * rate.value
+//   );
+// });
 
 const showShareModal = ref(false);
 

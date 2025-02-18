@@ -1,4 +1,9 @@
-export function useFlightPriceCalculator() {
+import { useCurrencyStore } from "~/store/currencyStore";
+
+export function useFlightPriceCalculator(
+  departureCity?: string,
+  destinationCity?: string
+) {
   const getFlightPrice = (
     departureCity: string,
     destinationCity: string,
@@ -16,8 +21,13 @@ export function useFlightPriceCalculator() {
       tarifKm *= 0.7;
     }
 
-    return Math.floor(distance * tarifKm) * (returnFlight ? 2 : 1);
+    return Math.round(distance * tarifKm * (returnFlight ? 2 : 1));
   };
 
-  return { getFlightPrice };
+  const flightPrice = computed(() => {
+    if (!departureCity || !destinationCity) return 0;
+    return getFlightPrice(departureCity, destinationCity, true);
+  });
+
+  return { getFlightPrice, flightPrice };
 }
