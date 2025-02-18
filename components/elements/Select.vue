@@ -1,19 +1,22 @@
 <template>
   <div class="select-group">
     <label :for="id">{{ label }}</label>
-    <select
-      :id="id"
-      v-model="selectedValue"
-      :required="required"
-      :disabled="disabled"
-      @change="validateInput"
-      :class="{ error: errorMessage }"
-    >
-      <option value="" disabled hidden>{{ placeholder }}</option>
-      <option v-for="option in options" :key="option" :value="option">
-        {{ option }}
-      </option>
-    </select>
+    <div class="custom-select-wrapper">
+      <select
+        :id="id"
+        v-model="selectedValue"
+        :required="required"
+        :disabled="disabled"
+        @change="validateInput"
+        :class="{ error: errorMessage }"
+      >
+        <option value="" disabled hidden>{{ placeholder }}</option>
+        <option v-for="option in options" :key="option" :value="option">
+          {{ option }}
+        </option>
+      </select>
+      <span class="custom-arrow"></span>
+    </div>
     <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
   </div>
 </template>
@@ -72,34 +75,55 @@ watch(
   }
 );
 </script>
-
 <style scoped>
 .select-group {
   display: flex;
   flex-direction: column;
 }
 
-label {
-  margin-bottom: 10px;
-  font-weight: 600;
+.custom-select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
 }
 
 select {
+  width: 100%;
+  padding: 10px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 4px;
+  background-color: white;
+  background-image: none;
+  font-size: 16px;
+
   border: 1px solid #d9d9d9;
   border-radius: 8px;
   padding: 12px 16px;
   font-size: 16px;
-  width: 100%;
+}
+
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #333;
+  transform: translateY(-50%);
 }
 
 select.error {
-  border: 1px solid red;
-  outline: 3px solid rgb(250, 226, 226);
+  border-color: red;
 }
 
 .error-message {
   color: red;
-  font-size: 14px;
+  font-size: 12px;
   margin-top: 5px;
 }
 </style>

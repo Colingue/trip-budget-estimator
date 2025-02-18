@@ -70,11 +70,6 @@ onMounted(() => {
   flex-direction: column;
 }
 
-label {
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-
 input {
   border: 1px solid #d9d9d9;
   border-radius: 8px;

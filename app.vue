@@ -179,4 +179,9 @@ article h2 {
     margin: 20px 20px 0;
   }
 }
+
+label {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
 </style>
