@@ -79,7 +79,7 @@ const { dailyCost, totalPrice, repartition } = useBudgetCalculator(
 
 const repartitions: RepartitionList = [
   {
-    title: "Hébergement",
+    title: "Accommodation",
     amount:
       repartition.value.accommodation *
       props.formData.numberOfPeople *
@@ -94,7 +94,7 @@ const repartitions: RepartitionList = [
     ),
   },
   {
-    title: "Nourriture",
+    title: "Food",
     amount:
       repartition.value.food *
       props.formData.numberOfPeople *
@@ -109,7 +109,7 @@ const repartitions: RepartitionList = [
     ),
   },
   {
-    title: "Activités",
+    title: "Activities",
     amount:
       repartition.value.activities *
       props.formData.numberOfPeople *
