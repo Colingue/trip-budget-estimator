@@ -13,7 +13,7 @@ const repartition = computed(() =>
 </script>
 
 <template>
-  <h3>Répartition du budget</h3>
+  <h3>Repartition of your budget</h3>
   <RepartitionLine
     v-for="line in repartition.sort((a, b) => b.amount - a.amount)"
     :key="line.title"
