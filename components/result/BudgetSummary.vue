@@ -1,5 +1,5 @@
 <template>
-  <div class="budget-container mb-32">
+  <div class="flex flex-col mb-32 lg:max-w-5xl lg:mx-auto">
     <div class="budget-result-container">
       <h2>Your Trip Estimation</h2>
 
