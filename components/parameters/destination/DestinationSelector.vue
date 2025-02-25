@@ -23,10 +23,15 @@ defineProps(["labelCountry", "labelCity", "errorMessage"]);
 
 const cities = ref<string[]>([]);
 
-const selectedCountry = ref("");
-const selectedCity = ref("");
+const selectedCountry = defineModel("selectedCountry", {
+  type: String,
+});
 
-const emit = defineEmits(["update:selectedCountry", "update:selectedCity"]);
+const selectedCity = defineModel("selectedCity", {
+  type: String,
+});
+
+// const emit = defineEmits(["update:selectedCountry", "update:selectedCity"]);
 
 const getCities = (country: string) => {
   const countryData = countryCosts.find(
@@ -36,7 +41,12 @@ const getCities = (country: string) => {
 };
 
 const updateCities = () => {
-  const selected = selectedCountry.value.toLowerCase();
+  const selected = selectedCountry.value?.toLowerCase();
+
+  if (!selected) {
+    cities.value = [];
+    return;
+  }
   const citiesData = getCities(selected);
 
   if (cities) {
@@ -45,13 +55,8 @@ const updateCities = () => {
 };
 
 watch(selectedCountry, () => {
-  emit("update:selectedCountry", selectedCountry.value);
   selectedCity.value = "";
   updateCities();
-});
-
-watch(selectedCity, () => {
-  emit("update:selectedCity", selectedCity.value);
 });
 
 watch(cities, () => {

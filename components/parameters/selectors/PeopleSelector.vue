@@ -7,7 +7,6 @@
       placeholder="Enter the number of people"
       required
       :min="1"
-      :default-value="1"
     />
   </div>
 </template>

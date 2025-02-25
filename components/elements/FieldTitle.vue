@@ -1,7 +1,7 @@
 <template>
-  <div class="field-title">
+  <div class="flex flex-1 items-center gap-4 mb-4">
     <EmojiContainer v-if="emoji" :emoji="emoji" />
-    <p class="title">{{ title }}</p>
+    <p>{{ title }}</p>
   </div>
 </template>
 
@@ -10,18 +10,3 @@ import EmojiContainer from "./EmojiContainer.vue";
 
 defineProps(["emoji", "title"]);
 </script>
-
-<style lang="scss">
-.field-title {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-  flex: 1;
-
-  .title {
-    font-weight: 600;
-    margin-left: 1rem;
-    font-size: 1.2rem;
-  }
-}
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="budget-container">
+  <div class="budget-container mb-32">
     <div class="budget-result-container">
       <h2>Your Trip Estimation</h2>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="form-container">
+  <div class="flex flex-col md:flex-row">
     <FieldTitle :emoji="emoji" :title="label" />
     <slot></slot>
   </div>

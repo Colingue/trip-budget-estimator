@@ -1,6 +1,10 @@
 <template>
   <div class="select-group">
-    <label :for="id">{{ label }}</label>
+    <label
+      class="mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      :for="id"
+      >{{ label }}</label
+    >
     <div class="custom-select-wrapper">
       <select
         :id="id"
@@ -9,6 +13,7 @@
         :disabled="disabled"
         @change="validateInput"
         :class="{ error: errorMessage }"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       >
         <option value="" disabled hidden>{{ placeholder }}</option>
         <option v-for="option in options" :key="option" :value="option">
@@ -77,44 +82,8 @@ watch(
 </script>
 <style scoped>
 .select-group {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
-}
-
-.custom-select-wrapper {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-}
-
-select {
-  width: 100%;
-  padding: 10px;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  border-radius: 4px;
-  background-color: white;
-  background-image: none;
-  font-size: 16px;
-
-  border: 1px solid #d9d9d9;
-  border-radius: 8px;
-  padding: 12px 16px;
-  font-size: 16px;
-}
-
-.custom-arrow {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  width: 0;
-  height: 0;
-  pointer-events: none;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid #333;
-  transform: translateY(-50%);
 }
 
 select.error {

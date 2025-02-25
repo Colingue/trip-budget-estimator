@@ -1,5 +1,9 @@
 <template>
-  <div class="explication-container">
+  <div class="flex flex-col mb-32 lg:max-w-5xl lg:mx-auto">
+    <h2 class="text-4xl font-bold dark:text-white mb-4">
+      How Does the Budget Calculator Work?
+    </h2>
+
     <nav class="article-nav">
       <ul>
         <li
@@ -18,8 +22,10 @@
     </nav>
 
     <article>
-      <section id="how-it-works">
-        <h2>How Does the Budget Calculator Work?</h2>
+      <section id="how-it-works" class="mb-16">
+        <h3 class="text-3xl font-semibold dark:text-white mb-4">
+          How Does the Budget Calculator Work?
+        </h3>
         <p>
           To use the <b>Travel budget calculator</b> for a trip, fill out the
           form with your criteria (number of days, number of travelers,
@@ -31,7 +37,9 @@
       </section>
 
       <section id="interpretation">
-        <h2>How to Interpret the Travel Budget Calculator Results?</h2>
+        <h3 class="text-3xl font-semibold dark:text-white mb-4">
+          How to Interpret the Travel Budget Calculator Results?
+        </h3>
         <p>
           The budget calculator results are estimated based on data collected
           from over
@@ -88,25 +96,6 @@ const activeSection = ref("how-it-works");
         border-left: 2px solid #333333;
       }
     }
-  }
-}
-
-article {
-  @media screen and (min-width: 768px) {
-    flex: 3;
-  }
-
-  section {
-    margin-bottom: 3rem;
-  }
-  h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    font-size: 1.1rem;
-    line-height: 1.6;
   }
 }
 </style>

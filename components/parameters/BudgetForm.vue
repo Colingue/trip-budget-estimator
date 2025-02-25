@@ -1,12 +1,11 @@
 <template>
-  <div class="budget-container">
+  <div class="mb-32 lg:max-w-5xl lg:mx-auto">
     <form
       @submit.prevent="handleSubmit"
       :onkeydown="keyIsEnter"
       id="estimation-form"
+      class="shadow-lg p-8 bg-white rounded-lg"
     >
-      <h2>Configure your trip</h2>
-
       <FormContainer label="Destination" emoji="🌍">
         <DestinationSelector
           v-model:selectedCountry="formData.destinationCountry"
@@ -86,11 +85,6 @@ const keyIsEnter = (event: KeyboardEvent) => {
 
 <style lang="scss">
 form {
-  background-color: white;
-  border: rgb(228, 238, 245) 2px solid;
-  border-radius: 10px;
-  box-shadow: #aeaeae40 0px 0px 40px;
-  padding: 2rem;
   position: relative;
   display: flex;
   flex-direction: column;

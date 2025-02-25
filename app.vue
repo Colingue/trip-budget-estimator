@@ -36,11 +36,6 @@ h4 {
   margin: 0;
 }
 
-main {
-  max-width: 1400px;
-  margin: auto;
-}
-
 .btn {
   background-color: $primary-color;
   color: white;
@@ -161,27 +156,8 @@ body {
   }
 }
 
-article h2 {
-  color: $primary-color;
-  font-weight: 500;
-  font-size: 2rem;
-}
-
-.budget-container {
-  margin: 0 10rem 4rem;
-
-  @media screen and (max-width: 768px) {
-    margin: 0 auto 4rem;
-  }
-
-  .disclaimer {
-    text-align: center;
-    margin: 20px 20px 0;
-  }
-}
-
-label {
-  margin-bottom: 10px;
-  font-weight: 600;
+.disclaimer {
+  text-align: center;
+  margin: 20px 20px 0;
 }
 </style>

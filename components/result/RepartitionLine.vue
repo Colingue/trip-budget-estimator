@@ -39,6 +39,11 @@ defineProps<RepartitionLineProps>();
     align-items: center;
     gap: 1rem;
     flex: 1;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      gap: 0;
+      align-items: baseline;
+    }
 
     p {
       margin: 0;
@@ -59,6 +64,10 @@ defineProps<RepartitionLineProps>();
     gap: 0.5rem;
     white-space: nowrap;
     flex: 1;
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
 
     & > p:first-child {
       font-weight: 700;
