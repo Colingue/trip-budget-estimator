@@ -1,6 +1,6 @@
 <template>
   <div class="form-group">
-    <Select
+    <!-- <Select
       id="destinationCountry"
       required
       v-model="selectedCountry"
@@ -15,11 +15,18 @@
       "
       :label="label"
       :error-message="errorMessage"
-    ></Select>
+    ></Select> -->
+    <SelectSearchable
+      v-model="selectedCountry"
+      :options="countries.map((country) => country.countryName)"
+      :label="label"
+      placeholder="Select a country"
+    ></SelectSearchable>
   </div>
 </template>
 
 <script lang="tsx" setup>
+import SelectSearchable from "~/components/elements/SelectSearchable.vue";
 import countries from "../../../data/country_costs.json";
 import Select from "../../elements/Select.vue";
 
